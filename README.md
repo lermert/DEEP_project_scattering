@@ -1,7 +1,7 @@
 # DEEP_project_scattering
 
 ## Description
-Random media in 2-D and 3-D with a von Karman spectrum. Developed in the context of the [DEEP geothermica](http://deepgeothermal.org/home/) project by the [Swiss Seismological Service](www.seismo.ethz.ch) and [Mondaic Ltd](mondaic.com).
+Random media in 2-D and 3-D with a von Karman spectrum. Developed in the context of the [DEEP geothermica](http://deepgeothermal.org/home/) project by the [Swiss Seismological Service](http://www.seismo.ethz.ch/en/home/) and [Mondaic Ltd](http://www.mondaic.com).
 
 based on the description, formulae and recommendations from:
 Carpentier, Stefan Filip Anton:

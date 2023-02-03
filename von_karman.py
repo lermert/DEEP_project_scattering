@@ -9,9 +9,12 @@
 import typing
 from dataclasses import dataclass
 
-# import numba_scipy
 import numpy as np
-import scipy
+
+try:
+    from scipy.fft import fftn, ifftn, fftshift, ifftshift
+except AttributeError:
+    from scipy.fftpack import fftn, ifftn, fftshift, ifftshift
 import xarray as xr
 from numba import njit, objmode
 from salvus.utils.type_validators import RequiredPrecondition
@@ -145,15 +148,15 @@ def _medium_2d(
     wn = g.random(shape)
 
     with objmode(ns="complex128[:,:]"):
-        ns = scipy.fft.fftn(wn, workers=-1)
-        ns = scipy.fft.fftshift(ns)
+        ns = fftn(wn, workers=-1)
+        ns = fftshift(ns)
 
     ns /= np.abs(ns)
     c_psd = psd_root * ns
 
     with objmode(ns="complex128[:,:]"):
-        m = scipy.fft.ifftshift(c_psd)
-        m = scipy.fft.ifftn(m, workers=-1)
+        m = ifftshift(c_psd)
+        m = ifftn(m, workers=-1)
 
     m -= np.mean(m)
     m_std = np.std(m)
@@ -194,15 +197,15 @@ def _medium_3d(
     wn = g.random(shape)
 
     with objmode(ns="complex128[:,:,:]"):
-        ns = scipy.fft.fftn(wn, workers=-1)
-        ns = scipy.fft.fftshift(ns)
+        ns = fftn(wn, workers=-1)
+        ns = fftshift(ns)
 
     ns /= np.abs(ns)
     c_psd = psd_root * ns
 
     with objmode(m="complex128[:,:,:]"):
-        m = scipy.fft.ifftshift(c_psd)
-        m = scipy.fft.ifftn(m, workers=-1)
+        m = ifftshift(c_psd)
+        m = ifftn(m, workers=-1)
 
     m -= np.mean(m)
     m_std = np.std(m)

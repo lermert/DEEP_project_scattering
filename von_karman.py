@@ -11,10 +11,8 @@ from dataclasses import dataclass
 
 import numpy as np
 
-try:
-    from scipy.fft import fftn, ifftn, fftshift, ifftshift
-except AttributeError:
-    from scipy.fftpack import fftn, ifftn, fftshift, ifftshift
+import numba_scipy
+from scipy.fft import fftn, ifftn, fftshift, ifftshift
 import xarray as xr
 from numba import njit, objmode
 from salvus.utils.type_validators import RequiredPrecondition
